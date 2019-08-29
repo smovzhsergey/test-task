@@ -1,0 +1,29 @@
+@import '../../main.module.scss';
+
+.header {
+
+    background-color: $black;
+    color: $white;
+    padding: 10px 40px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    h1 {
+        color: $green;
+        margin-right: 20px;
+    }
+
+    p {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-left: 20px;
+
+        &:last-of-type {            
+            color: $gray;
+            font-weight: 400;
+            margin-left: auto;
+        }
+    }
+}

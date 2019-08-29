@@ -1,0 +1,1 @@
+export const apiUrl = 'https://api.dev.buki.com.ua/frontend_test';

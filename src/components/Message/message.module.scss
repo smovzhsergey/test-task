@@ -1,0 +1,94 @@
+@import '../../main.module.scss';
+
+.message {
+
+    background-color: $gray;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 15px 0 15px 40px;
+    padding: 15px;
+    position: relative;
+    width: 50%;
+
+    figure {
+        float: left;
+            margin-right: 10px;
+
+        img {
+            width: 80px;
+            max-width: 100%;
+        }
+    }
+
+    .content {
+        &__author {
+            color: $green;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        &__message {
+            font-size: 1.125rem;
+            line-height: 1.2;
+        }
+    }
+
+    .time {
+        color: $darkGray;
+        font-size: 0.875rem;
+        position: absolute;
+        right: 8px;
+        top: 8px;
+    }
+
+    .icons {
+        position: absolute;
+        right: 20px;
+        bottom: 8px;
+        cursor: pointer;
+
+        .icon {
+            color: $green;
+            font-size: 1.4rem;
+            margin-left: 10px;
+        }
+        
+    }
+
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+
+.myOwnMessage {
+    @extend .message;
+
+    align-self: flex-end;
+    background-color: $darkGray;
+    margin-right: 40px;
+
+    figure,
+    .content {
+        color: $white;
+    }
+
+    .content {
+        &__message {
+            input {
+                background: none;
+                border: none;
+                border-bottom: 2px solid $green;
+                color: $white;
+                font-size: 1.125rem;
+                outline: none;
+                width: 80%;
+            }
+        }
+    }
+
+    .time {
+        color: $gray;
+    }
+}

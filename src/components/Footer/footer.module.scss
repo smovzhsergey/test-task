@@ -1,0 +1,29 @@
+@import '../../main.module.scss';
+
+.footer {
+
+    background-color: $black;
+    padding: 10px;
+    text-align: center;
+
+    * {
+        color: $white;
+    }
+
+    nav {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    span {
+        cursor: pointer;
+        margin: 10px 40px;
+        text-decoration: none;
+        transition: color 0.4s;
+
+        &:hover {
+            color: $green;
+        }
+    }
+    
+}

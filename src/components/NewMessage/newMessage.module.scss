@@ -1,0 +1,41 @@
+@import '../../main.module.scss';
+
+.form {
+    background-color: $gray;
+    
+    form {
+        padding: 10px 20px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+
+        input {
+            outline: none;
+            border: none;
+
+            &[type = 'text'] {
+                border-radius: 8px;
+                padding: 20px;
+                flex-grow: 5;
+                font-size: 1.125rem;
+                margin-right: 20px;
+            }
+
+            &[type = 'submit'] {
+                background-color: $green;
+                border-radius: 12px;
+                color: $white;
+                cursor: pointer;
+                flex-grow: 1;
+                font-size: 2rem;
+                font-weight: 600;
+                padding: 20px;
+                transition: background-color 0.4s;
+        
+                &:hover {
+                    background-color: darken($green, 15%);
+                }
+            }
+        }
+    }    
+}

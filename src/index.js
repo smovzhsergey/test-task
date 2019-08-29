@@ -1,4 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<h1>Test Task</h1>, document.getElementById('root'));
+import Chat from './container/Chat';
+
+import store from './store/store';
+
+render (
+    <Provider store = { store }>
+        <Chat />
+    </Provider>
+    ,document.getElementById('root'));
