@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import { func, object, string } from 'prop-types';
-import { FaHeart, FaRegHeart, FaEdit, FaSave, FaTrashAlt } from 'react-icons/fa';
+import { FaWindowClose, FaHeart, FaRegHeart, FaEdit, FaSave, FaTrashAlt } from 'react-icons/fa';
 
 import Styles from './message.module.scss';
 
@@ -46,7 +46,7 @@ const Message = ({
 	}
 	
 	const handleChange = (e) => {
-		setMessageText(e.target.value)
+		setMessageText(e.target.value);
 	}
 	
 	const handleUpdate = (e) => {
@@ -59,6 +59,11 @@ const Message = ({
 		});
 	}
 	
+	const canselEditing = () => {
+		setIsEditing(!isEditing);
+		setMessageText(message);
+	}
+
 	const messageType = isMyMessage ? 'myOwnMessage' : 'message';
 
     const iconLike = !isLikedMessage ?
@@ -68,7 +73,8 @@ const Message = ({
 
 	const whichIcons = isMyMessage ?
 		<>
-			{ !isEditing && <FaEdit className = { Styles.icon } data-id = { id } onClick = { handleEdit }/>}
+			{ isEditing && <FaWindowClose className = { Styles.icon } onClick = { canselEditing }/>}
+			{ !isEditing && <FaEdit className = { Styles.icon } onClick = { handleEdit }/>}
 			{ isEditing &&  <FaSave className = { Styles.icon } data-id = { id } onClick = { handleUpdate }/>}
 			<FaTrashAlt className = { Styles.icon } data-id = { id } onClick = { handleDelete }/>
 		</> 
