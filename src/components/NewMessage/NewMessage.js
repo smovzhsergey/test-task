@@ -20,8 +20,11 @@ const NewMessage = ({ addNewMessage, currentUser }) => {
 			message: form[0].value,
 		}
 
-		addNewMessage(newMessage);
-		form[0].value = '';
+		if (form[0].value) {
+			addNewMessage(newMessage);
+			form[0].value = '';
+		}
+		
 	}
 	
     return (
