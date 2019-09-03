@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useEffect, useRef, useState }  from 'react';
 import { func, object, string } from 'prop-types';
 import { FaWindowClose, FaHeart, FaRegHeart, FaEdit, FaSave, FaTrashAlt } from 'react-icons/fa';
 
@@ -20,6 +20,13 @@ const Message = ({
 
 	const [ messageText, setMessageText ] = useState(message);
 	const [ isEditing, setIsEditing ] = useState(false);
+	const inputField = useRef(messageText);
+
+	useEffect( () => {
+		if (isEditing) {
+			inputField.current.focus();
+		}
+	}, [isEditing]);
 
     const handleLikeClick = (e) => {
         const id = e.currentTarget.dataset.id;
@@ -93,7 +100,7 @@ const Message = ({
 						!isEditing ?
 							message 
 							:
-							<input type = 'text' value = { messageText } onChange = { handleChange } />
+							<input type = 'text' ref = { inputField } value = { messageText } onChange = { handleChange } />
 					}
 				</p>
             </div>
