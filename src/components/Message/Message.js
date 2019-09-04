@@ -28,8 +28,7 @@ const Message = ({
 		}
 	}, [isEditing]);
 
-    const handleLikeClick = (e) => {
-        const id = e.currentTarget.dataset.id;
+    const handleLikeClick = () => {
         const { likes } = currentUser;
         let newLikes;
 
@@ -42,34 +41,43 @@ const Message = ({
         likeMessage(newLikes);
 	}
 	
-	const handleDelete = (e) => {
-		const id = e.currentTarget.dataset.id;
-		
-        deleteMessage(id);
-	}
+	const handleDelete = (e) => { deleteMessage(id) };
 	
-	const handleEdit = () => {
-		setIsEditing(!isEditing);
-	}
+	const handleEdit = () => { setIsEditing(!isEditing) };
 	
-	const handleChange = (e) => {
-		setMessageText(e.target.value);
-	}
-	
-	const handleUpdate = (e) => {
-		const id = e.currentTarget.dataset.id;
+	const handleChange = (e) => { setMessageText(e.target.value) };
+
+	const handleDobleClick = () => {
+		if (isMyMessage) {
+			handleEdit();
+		}
+	};
+
+	const cancelEditing = () => {
+		handleEdit();
+		setMessageText(message);
+	};
+
+	const updateMessage = (id) => {
 		setIsEditing(!isEditing);
 
         editMessage({
 			id,
 			message: messageText
 		});
+	};
+
+	const handleKeyDown = (e) => {
+		if (e.keyCode === 13) {
+			updateMessage(id);
+		}
+		
+		if (e.keyCode === 27) {
+			cancelEditing();
+		}
 	}
-	
-	const canselEditing = () => {
-		setIsEditing(!isEditing);
-		setMessageText(message);
-	}
+
+	const handleUpdate = (e) => { updateMessage(id) };
 
 	const messageType = isMyMessage ? 'myOwnMessage' : 'message';
 
@@ -80,7 +88,7 @@ const Message = ({
 
 	const whichIcons = isMyMessage ?
 		<>
-			{ isEditing && <FaWindowClose className = { Styles.icon } onClick = { canselEditing }/>}
+			{ isEditing && <FaWindowClose className = { Styles.icon } onClick = { cancelEditing }/>}
 			{ !isEditing && <FaEdit className = { Styles.icon } onClick = { handleEdit }/>}
 			{ isEditing &&  <FaSave className = { Styles.icon } data-id = { id } onClick = { handleUpdate }/>}
 			<FaTrashAlt className = { Styles.icon } data-id = { id } onClick = { handleDelete }/>
@@ -89,18 +97,28 @@ const Message = ({
 		iconLike;
 
     return (
-        <div className = { Styles[messageType] } data-id = {id}>
+		<div className = { Styles[messageType] } data-id = { id } >
             <figure>
                 <img src = { avatar } alt = { `User ${ user } avatar` } />
             </figure>
             <div className = { Styles.content }>
                 <p className = { Styles.content__author }>{ user }</p>
-				<p className = { Styles.content__message }>
+				<p
+					className = { Styles.content__message }
+					onDoubleClick = { handleDobleClick }
+				>
 					{
 						!isEditing ?
 							message 
 							:
-							<input type = 'text' ref = { inputField } value = { messageText } onChange = { handleChange } />
+							( isMyMessage && <input
+									type = 'text'
+									ref = { inputField }
+									value = { messageText }
+									onChange = { handleChange }
+									onKeyDown = { handleKeyDown }
+								/>
+							) 	
 					}
 				</p>
             </div>
