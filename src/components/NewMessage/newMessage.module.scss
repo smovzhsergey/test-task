@@ -2,6 +2,10 @@
 
 .form {
     background-color: $gray;
+    position: fixed;
+    bottom: 70px;
+    right: 0;
+    left: 0;
     
     form {
         padding: 10px 20px;

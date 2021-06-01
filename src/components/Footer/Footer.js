@@ -8,7 +8,7 @@ const Footer = () => (
             <span>About</span>
             <span>Contact Us</span>
         </nav>
-        <p>@ Copyright 2019</p>
+        <p>@ Copyright 2021</p>
     </footer>
 );
 

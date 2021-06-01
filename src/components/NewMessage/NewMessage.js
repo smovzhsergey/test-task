@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { func, object } from 'prop-types';
 import moment from 'moment';
 
@@ -6,6 +6,8 @@ import Styles from './newMessage.module.scss';
 import { createID } from '../../helpers/helpers';
 
 const NewMessage = ({ addNewMessage, currentUser }) => {
+	const inputField = useRef();
+	
 
     const handleSubmit = (e) => {
 
@@ -23,14 +25,15 @@ const NewMessage = ({ addNewMessage, currentUser }) => {
 		if (form[0].value) {
 			addNewMessage(newMessage);
 			form[0].value = '';
+			inputField.current.focus();			
 		}
 		
 	}
 	
     return (
-        <div className = { Styles.form } >
+        <div className = { Styles.form }>
             <form onSubmit = { handleSubmit }>
-                <input type = 'text' placeholder = 'Type something...' />
+                <input type = 'text' placeholder = 'Type something...' ref={inputField}/>
                 <input type = 'submit' value = 'Send' />
             </form>
         </div>

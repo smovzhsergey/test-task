@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import { arrayOf, func, object, objectOf, string } from 'prop-types';
 
 import Styles from './messageList.module.scss';
 import Message from '../Message/Message';
 
 const MessageList = ({ currentUser, deleteMessage, editMessage, likeMessage, messages }) => {
+    
+    const cont = useRef();
+
+    useEffect( () => {
+        cont.current.scrollIntoView({block: "end", behavior: "smooth"});
+    }, [messages.length])
     
     const messageList = messages.map( item => {
 
@@ -26,7 +32,7 @@ const MessageList = ({ currentUser, deleteMessage, editMessage, likeMessage, mes
     });
     
     return (
-        <section className = { Styles.wall } >
+        <section className = { Styles.wall } ref = {cont} >
             { messageList }
         </section>
     );

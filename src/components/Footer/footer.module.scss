@@ -1,7 +1,12 @@
 @import '../../main.module.scss';
 
 .footer {
-
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    max-height: 50px;
     background-color: $black;
     padding: 10px;
     text-align: center;
@@ -11,7 +16,7 @@
     }
 
     nav {
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin-bottom: 10px;
     }
 
